@@ -1,0 +1,2 @@
+# jenova
+learn vite+react
