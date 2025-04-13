@@ -38,14 +38,11 @@ function WebGLView()
   React.useEffect(() => {
     console.log('mounted');
     // console.log("今いるパス：", location.pathname);
-
-    console.log(location)
-
     // URLに応じて演出切り替え
     engine.current.loadScene( location.pathname );
 
     return () => {
-      console.log('unmounted');
+      // console.log('unmounted');
     };
   }, [location.pathname]);
 

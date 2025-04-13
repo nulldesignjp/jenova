@@ -6,6 +6,8 @@ import Renderer from './core/Renderer.js'
 import Size from './core/Size.js'
 import Time from './core/Time.js'
 
+import Pane from './Pane.js'
+
 export default class WebGLSceneManager
 {
     constructor( props )
@@ -17,6 +19,8 @@ export default class WebGLSceneManager
         this.eventList = [];
 
         this.init()
+
+        new Pane()
     }
 
     init()
