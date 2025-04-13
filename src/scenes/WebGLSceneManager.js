@@ -40,6 +40,11 @@ export default class WebGLSceneManager
 
     removeEvents(){}
 
+    loadScene( _sceneLabel )
+    {
+        console.log( 'loadScene,',_sceneLabel )
+    }
+
     update()
     {
         this.updateKey = window.requestAnimationFrame( this.update.bind( this ) );

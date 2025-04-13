@@ -9,54 +9,43 @@ import webgl from '../scenes/WebGLSceneManager.js'
 function WebGLView()
 {
   //  pseudo construct
-  const canvas = React.useRef();
-  const location = useLocation();
+  const canvas = React.useRef();  //  dom
+  const engine = React.useRef();  //  instance
+  const location = useLocation(); //  url
 
   React.useEffect(() => {
     console.log('mounted');
     console.log(canvas.current)
 
     //  極論こんな感じか
-    // const hoge;
     // if (!canvas.current) {
     //   canvas.current = new webgl({
     //  canvas: canvas.current
     // });
     // }
-    const hoge = new webgl({
+    
+    engine.current = new webgl({
       canvas: canvas.current
     });
 
     return () => {
       console.log('unmounted');
-      // hoge.dispose()
+      engine.current.dispose();
+      engine.current = null;
     };
   },[])
 
-
   React.useEffect(() => {
     console.log('mounted');
-    console.log("今いるパス：", location.pathname);
+    // console.log("今いるパス：", location.pathname);
 
-    // ルートに応じて演出切り替え
-    switch (location.pathname) {
-      case '/':
-        // sceneManager.loadScene('Title');
-        console.log('/')
-        break;
-      case '/web':
-        // sceneManager.loadScene('Gallery');
-        console.log('web')
-        break;
-      case '/ai':
-        // sceneManager.loadScene('Heavy');
-        console.log('AI')
-        break;
-    }
+    console.log(location)
+
+    // URLに応じて演出切り替え
+    engine.current.loadScene( location.pathname );
 
     return () => {
       console.log('unmounted');
-      // hoge.dispose()
     };
   }, [location.pathname]);
 
