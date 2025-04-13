@@ -14,7 +14,6 @@ export default class WebGLSceneManager
     {
         this.props = props;
 
-        this.updateKey = undefined;
         this.resizeKey = undefined;
         this.eventList = [];
 
@@ -38,22 +37,41 @@ export default class WebGLSceneManager
 
         this.addEvents();
         this.resize();
+
+        let _geometry = new THREE.BoxGeometry( 100, 100, 100 );
+        let _material = new THREE.MeshBasicMaterial( { color: 0x333333, wireframe: true } );
+        this.mesh = new THREE.Mesh( _geometry, _material );
+        this.scene.add( this.mesh );
     }
 
     addEvents(){}
 
-    removeEvents(){}
+    removeEvents()
+    {
+        let len = this.eventList.length;
+        while( len )
+        {
+        len--
+        let _evt = this.eventList.pop();
+        _evt.target.removeEventListener( _evt.key, _evt.value, _evt.option );
+        _evt = null;
+        }
+        this.eventList = null
+    }
 
     loadScene( _sceneLabel )
     {
         console.log( 'loadScene,',_sceneLabel )
+        this.mesh.material.color.set( Math.random() * 0xffffff );
     }
 
     update()
     {
-        // this.updateKey = window.requestAnimationFrame( this.update.bind( this ) );
         this.camera.update()
         this.renderer.update( this.scene, this.camera );
+
+        this.mesh.rotation.x += 0.01;
+        this.mesh.rotation.y += 0.01;
 
     }
 
