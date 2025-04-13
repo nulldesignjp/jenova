@@ -1,0 +1,51 @@
+@import './_variables.styl'
+@import './_functions.styl'
+
+*
+  box-sizing border-box
+  color $color-text
+
+body
+  margin 0
+  background $color-background
+  text-align center;
+
+  font-family 'Noto Sans JP', sans-serif
+  font-weight 400
+  font-smoothing antialiased
+  -webkit-font-smoothing antialiased
+
+a
+  text-decoration none
+  color $color-anchor-hover
+
+  &:hover
+    color $color-white
+    background $color-anchor-hover
+
+img
+  max-width 100%
+  height auto
+  vartical-align bottom
+
+
+table
+  width 100%
+
+.wrapper
+  margin 0 auto
+  width 720px //  一旦ね
+  text-align left
+
+  +sp()
+    width calc( 100% - 40px )
+
+  code
+    line-height 1
+    font-size normal
+    color #FFF
+
+  pre:has(code)
+    background-color #333
+    padding 1.25em
+    border-radius 0.5em
