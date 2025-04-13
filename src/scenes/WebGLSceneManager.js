@@ -20,7 +20,7 @@ export default class WebGLSceneManager
 
         this.init()
 
-        new Pane()
+        new Pane()  //  testcode
     }
 
     init()
@@ -34,10 +34,10 @@ export default class WebGLSceneManager
         });
 
         this.size.on('resize',()=>{ this.resize();  })
+        this.time.on('tick', ()=>{  this.update();  })
 
         this.addEvents();
         this.resize();
-        this.update();
     }
 
     addEvents(){}
@@ -51,8 +51,7 @@ export default class WebGLSceneManager
 
     update()
     {
-        this.updateKey = window.requestAnimationFrame( this.update.bind( this ) );
-
+        // this.updateKey = window.requestAnimationFrame( this.update.bind( this ) );
         this.camera.update()
         this.renderer.update( this.scene, this.camera );
 
@@ -71,5 +70,6 @@ export default class WebGLSceneManager
         this.scene.dispose();
 
         this.size.off('resize')
+        this.time.off('tick')
     }
 }

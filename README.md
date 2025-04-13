@@ -10,7 +10,7 @@
 - npm run dev || npm run start
 
 # 今後の予定
-- TS導入？
+- TS導入？(めんどくさいので当面パス)
 - hooksの学習
 - Three.jsのシーン読み込み最適化
 

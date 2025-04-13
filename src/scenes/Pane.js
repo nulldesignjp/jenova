@@ -1,4 +1,5 @@
 import { Pane } from 'TweakPane'
+//  https://tweakpane.github.io/docs/
 
 export default class CustomPane extends Pane
 {
@@ -24,10 +25,30 @@ export default class CustomPane extends Pane
                 }
             }
 
-        })
+        });
 
         this.containerElem_.style.display = 'none'
 
+    }
+
+    addFolder( _options )
+    {
+        _options.title = _options.title || 'label'
+        _options.expanded = _options.titexpandedle || true;
+        return super.addFolder( _options )
+    }
+
+    addBinding( _param, _label, _options )
+    {
+        _options = _options || {}
+        return super.addBinding( _param, _label, _options );
+    }
+
+    addButton( _options )
+    {
+        _options.title = _options.title || 'title'
+        _options.label = _options.label || 'label'
+        return super.addButton( _options )
     }
 
 }
