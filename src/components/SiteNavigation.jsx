@@ -15,17 +15,10 @@ export default class SiteNavigation extends React.Component
     return(
       <nav className="siteNavigation">
         <ul>
-          <li>HOEM</li>
-          <li>WEB</li>
-          <li>AI</li>
-          <li>404</li>
-          <li>...</li>
-
-          <li><a href='/'>home</a></li> {/* Linkがうまく機能しないのでA直書きでチェック */}
-          <li><a href='/web'>web</a></li>
-          <li><a href='/ai'>ai</a></li>
-          {/* <li><Link to="/web">Web</Link></li> */}
-          {/* <li><Link to="/">GO TO HOEM</Link></li> エラー出るので一度外す*/}
+        <li><Link to="/">HOEM</Link></li>
+        <li><Link to="/web">Web</Link></li>
+        <li><Link to="/ai">AI</Link></li>
+        <li>....</li>
         </ul>
       </nav>
     )

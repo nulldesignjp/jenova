@@ -11,13 +11,13 @@ import { BrowserRouter } from 'react-router-dom'
 import './styles/global.styl'
 
 createRoot(document.getElementById('root')).render(
-  <div className="wrapper">
-    <SiteHeader />
-    <SiteNavigation />
-    <BrowserRouter>
-      <Pages />
-    </BrowserRouter>
-    <SiteFooter />
-    <WebGLView />
-  </div>,
+  <BrowserRouter>
+    <div className="wrapper">
+      <SiteHeader />
+      <SiteNavigation />
+        <Pages />
+      <SiteFooter />
+      <WebGLView />
+    </div>
+  </BrowserRouter>,
 )
