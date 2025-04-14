@@ -8,8 +8,7 @@ import PseudoWebGL from '../libs/PseudoWebGL'
 function App() {
   const [count, setCount] = useState<number>(0);
   const myCanvas = useRef<HTMLCanvasElement>(null);
-
-  let _pseudoWebGL:PseudoWebGL;
+  const pseudoWebGL = useRef<PseudoWebGL | null>(null);
 
   useEffect(()=>{
 
@@ -17,18 +16,15 @@ function App() {
 
     if( myCanvas.current )
     {
-      _pseudoWebGL = new PseudoWebGL({
+      pseudoWebGL.current = new PseudoWebGL({
         canvas: myCanvas.current
-      })
+      });
     }
 
     return ()=>{
       //  dispose
-      if( _pseudoWebGL )
-      {
-        _pseudoWebGL.dispose();
-        myCanvas.current = null;
-      }
+      pseudoWebGL.current?.dispose();
+      pseudoWebGL.current = null;
     }
 
   },[])
