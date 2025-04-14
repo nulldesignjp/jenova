@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import Index from './index.jsx'
 import Web from './Web.jsx'
 import Ai from './Ai.jsx'
+import Text from './Text.jsx'
 import Page404 from './Page404.jsx'
 
 function App()
@@ -14,6 +15,7 @@ function App()
         <Route path="/" element={ <Index /> } />
         <Route path="/web" element={ <Web /> } />
         <Route path="/ai" element={ <Ai /> } />
+        <Route path="/text" element={ <Text /> } />
         <Route path="*" element={ <Page404 /> } />
       </Routes>
     </>

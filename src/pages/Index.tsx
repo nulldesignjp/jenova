@@ -55,8 +55,11 @@ function App() {
       <canvas className="indexwebglview" ref={myCanvas}></canvas>
 
       <p>contents area.</p>
-      <p>普通にテンプレートを触ってお作法学びつつリハビリ（React3ヶ月ぶり）。プロジェクトコードは思いつきの拗らせ。</p>
-      <p>ファイルの命名規則考えること。今少し混乱。</p>
+      <p>ChatGPTベースでの学習はコードお作法学に限定するとクッソ効率がいい。</p>
+      <p>Reactのお作法とTSのお作法を混ぜると環境依存型になるので分離して使うこと。TSはほぼAS3なので気にせず描ける。ほとんど忘れてるけど。</p>
+      <p>クラス設計周辺のことをざっとできるのは強い。</p>
+      <p>...仕事には使わ</p>
+      <p><s>ファイルの命名規則考えること。今少し混乱。</s></p>
       <dl>
         <dt>main.jsx</dt>
         <dd>大元のルート扱い。主にルーディングと諸設定。pages の外にあるのでまだおk</dd>
@@ -65,7 +68,7 @@ function App() {
         <dt><s>Home.jsx</s> → index.jsx</dt>
         <dd><s>実際のINDEX.HTMLに相当。index.jsxとHome.jsxで混乱。と言いつつもindex.jsxはpagesに入れといた方がいいのか疑惑。</s>(解決)</dd>
       </dl>
-      <p>ルーティングのJSXは_router.jsxとして読み込み。トップはindex.jsxとする。</p>
+      <p>ルーティングのJSXは_router.jsxとして読み込み。トップはindex.jsxとする。(確定)</p>
 
       <pre><code>CODEはこんな感じ</code></pre>
 {/* 

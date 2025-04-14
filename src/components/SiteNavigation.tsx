@@ -13,6 +13,7 @@ const SiteNavigation = () =>
       <li><Link to="/">HOEM</Link></li>
       <li><Link to="/web">Web</Link></li>
       <li><Link to="/ai">AI</Link></li>
+      <li><Link to="/text">Text</Link></li>
       <li>....</li>
       </ul>
     </nav>

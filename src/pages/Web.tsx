@@ -14,6 +14,7 @@ function Web() {
 
       <p>Sample Code</p>
       <pre><code>npm create vite@latest</code></pre>
+
     </>
   )
 }
