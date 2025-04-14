@@ -1,7 +1,7 @@
 // import React from 'react'
 import '../styles/frame.styl'
 
-function SiteHeader()
+const SiteHeader = ()=>
 {
   return(
     <header className="siteHeader">

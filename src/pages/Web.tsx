@@ -1,10 +1,12 @@
-// import React from 'react'
-// import { useState } from 'react'
+import { useState } from 'react'
 
-function Web()
-{
-  return(
+function Web() {
+  
+  const [count, setCount] = useState<number>(0)
+
+  return (
     <>
+      <h1>Web</h1>
       <p>contents area.</p>
       <p>webで調べたこと書き殴る</p>
 

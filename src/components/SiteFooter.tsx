@@ -1,10 +1,10 @@
 // import React from 'react'
 import '../styles/frame.styl'
 
-function SiteFooter() {
+const SiteFooter = ()=> {
   return (
     <footer className="siteFooter">
-      <p>footer</p>
+      <p>&copy; hrsk.dev</p>
     </footer>
   )
 }

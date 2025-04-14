@@ -1,11 +1,63 @@
-// import React from 'react'
-// import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRef } from 'react'
+import reactLogo from '../assets/react.svg'
+import viteLogo from '/vite.svg'
 
-function Home()
-{
+import PseudoWebGL from '../libs/PseudoWebGL'
 
-  return(
+function App() {
+  const [count, setCount] = useState<number>(0);
+  const myCanvas = useRef<HTMLCanvasElement>(null);
+
+  let _pseudoWebGL:PseudoWebGL;
+
+  useEffect(()=>{
+
+    console.log( myCanvas.current )
+
+    if( myCanvas.current )
+    {
+      _pseudoWebGL = new PseudoWebGL({
+        canvas: myCanvas.current
+      })
+    }
+
+    return ()=>{
+      //  dispose
+      if( _pseudoWebGL )
+      {
+        _pseudoWebGL.dispose();
+        myCanvas.current = null;
+      }
+    }
+
+  },[])
+
+  return (
     <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+
+      <canvas className="indexwebglview" ref={myCanvas}></canvas>
+
       <p>contents area.</p>
       <p>普通にテンプレートを触ってお作法学びつつリハビリ（React3ヶ月ぶり）。プロジェクトコードは思いつきの拗らせ。</p>
       <p>ファイルの命名規則考えること。今少し混乱。</p>
@@ -50,4 +102,4 @@ React.memo()	動かさなくていいUIの最適化	描画コスト減（特にT
   )
 }
 
-export default Home
+export default App
