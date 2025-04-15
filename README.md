@@ -1,4 +1,34 @@
-# React + TypeScript + Vite
+# Vite + React + TypeScript + Three.js
+
+this git is private training files.
+
+## Check Node version.
+
+```bash
+# yarn
+node -v    //  v22.12.0 
+```
+## Setup
+
+Make sure to install dependencies:
+
+```bash
+# yarn
+yarn install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# yarn
+npm run start
+```
+
+
+
+## original text
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

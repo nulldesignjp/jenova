@@ -4,27 +4,38 @@ import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 
 import PseudoWebGL from '../libs/PseudoWebGL'
+import Reunion from '../libs/jenova/Reunion'
 
 function App() {
   const [count, setCount] = useState<number>(0);
   const myCanvas = useRef<HTMLCanvasElement>(null);
+  const myCanvas2 = useRef<HTMLCanvasElement>(null);
   const pseudoWebGL = useRef<PseudoWebGL | null>(null);
+  const reunion = useRef<Reunion | null>(null);
 
   useEffect(()=>{
 
     console.log( myCanvas.current )
 
     if( myCanvas.current )
-    {
-      pseudoWebGL.current = new PseudoWebGL({
-        canvas: myCanvas.current
-      });
-    }
+      {
+        pseudoWebGL.current = new PseudoWebGL({
+          canvas: myCanvas.current
+        });
+      }
+      if( myCanvas2.current )
+      {
+        reunion.current = new Reunion({
+          canvas: myCanvas2.current
+        });
+      }
 
     return ()=>{
       //  dispose
       pseudoWebGL.current?.dispose();
       pseudoWebGL.current = null;
+      reunion.current?.dispose();
+      reunion.current = null;
     }
 
   },[])
@@ -53,6 +64,7 @@ function App() {
       </p>
 
       <canvas className="indexwebglview" ref={myCanvas}></canvas>
+      <canvas className="webglview" ref={myCanvas2}></canvas>
 
       <p>contents area.</p>
       <p>ChatGPTベースでの学習はコードお作法学に限定するとクッソ効率がいい。</p>
