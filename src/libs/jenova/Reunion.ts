@@ -33,7 +33,7 @@ export default class WebGLSceneManager
     public renderer:Renderer;
     
     private props:Params;
-    private resizeKey:string;
+    //  private resizeKey:string;
     private eventList:Evts[];
 
 

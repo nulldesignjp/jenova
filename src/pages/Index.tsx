@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRef } from 'react'
+import { useLocation } from "react-router-dom";
+
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 
@@ -7,15 +9,18 @@ import PseudoWebGL from '../libs/PseudoWebGL'
 import Reunion from '../libs/jenova/Reunion'
 
 function App() {
+
   const [count, setCount] = useState<number>(0);
   const myCanvas = useRef<HTMLCanvasElement>(null);
   const myCanvas2 = useRef<HTMLCanvasElement>(null);
   const pseudoWebGL = useRef<PseudoWebGL | null>(null);
   const reunion = useRef<Reunion | null>(null);
 
+  const location = useLocation();
+
   useEffect(()=>{
 
-    console.log( myCanvas.current )
+    // console.log( myCanvas.current )
 
     if( myCanvas.current )
       {
@@ -39,6 +44,13 @@ function App() {
     }
 
   },[])
+
+
+  useEffect(()=>{
+
+    console.log( location.pathname );
+
+  },[location.pathname]);
 
   return (
     <>
