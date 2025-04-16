@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useLocation } from "react-router-dom";
 
 import reactLogo from '../assets/react.svg'
@@ -8,33 +7,37 @@ import viteLogo from '/vite.svg'
 import Jenova from '../libs/jenova'
 import gsap from 'gsap'
 import Wire from '../libs/jenova/core/Wire.js'
-// import PlaneImage from './libs/jenova/PlaneImage.js'
+import PlaneImage from '../libs/jenova/PlaneImage.js'
+import * as THREE from 'three'
 
 function App() {
 
   const [count, setCount] = useState<number>(0);
   const myCanvas = useRef<HTMLCanvasElement>(null);
-  const myCanvas2 = useRef<HTMLCanvasElement>(null);
   const reunion = useRef<Jenova | null>(null);
   const updatekey = useRef<number>(null);
 
   const location = useLocation();
+  
+  /**
+   * 全てのようをそ直接入れると管理がめんどくさいので、シーンごとの管理に。
+   * Scene[] ? Scene{}
+   * 
+   */
 
-
+  const img = useRef<THREE.Mesh | null>(null);
   const mesh = useRef<Wire | null>(null);
   const sphere = useRef<Wire | null>(null);
-
 
   useEffect(()=>{
 
     // console.log( myCanvas.current )
 
-      if( myCanvas2.current )
+      if( myCanvas.current )
       {
         reunion.current = new Jenova({
-          canvas: myCanvas2.current
+          canvas: myCanvas.current
         });
-
 
         //  確認用のメッシュを追加
         mesh.current = Wire.Box( 100, 0x666666 );
@@ -63,6 +66,12 @@ function App() {
         sphere.current = Wire.Sphere( 50, 32, 0xFF0000 );
         reunion.current.add( sphere.current );
 
+        let _texture = new THREE.TextureLoader().load('/assets/img/img_00001.png', _texture =>{
+          img.current = new PlaneImage( _texture )
+          reunion.current.add( img.current )
+
+          img.current.position.x = 240
+        })
 
         //  中に引っ掛ける
         reunion.current.time.on('tick', ()=>{
@@ -80,6 +89,8 @@ function App() {
     return ()=>{
       //  dispose
       console.log('dispose')
+
+      img.current.material.map.dispose()
 
       reunion.current.remove( mesh.current );
       reunion.current.remove( sphere.current );
@@ -126,7 +137,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
 
-      <canvas className="webglview" ref={myCanvas2}></canvas>
+      <canvas className="webglview" ref={myCanvas}></canvas>
 
       <p>contents area.</p>
       <p>ChatGPTベースでの学習はコードお作法学に限定するとクッソ効率がいい。</p>

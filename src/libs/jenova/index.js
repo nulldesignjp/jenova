@@ -43,6 +43,12 @@ export default class Jenova
 
         this.size.on('resize',()=>{ this.resize();  })
         this.time.on('tick', ()=>{  this.update();  })
+        // window.addEventListener('scroll', e=>{
+        //     console.log("scroll", window.scrollY )
+        // })
+        // window.addEventListener('wheel', e=>{
+        //     console.log("wheel", window.scrollY )
+        // })
 
         this.resize();
         
