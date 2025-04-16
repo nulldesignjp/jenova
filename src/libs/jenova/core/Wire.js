@@ -57,7 +57,7 @@ export default class Wire
 
   static Rectangle( _w = 100, _h = 100, _color = 0x000000 )
   {
-    return WireFrame.plane( _w, _h, _color );
+    return Wire.plane( _w, _h, _color );
   }
 
   static Box( _size = 1.0, _color = 0x000000 )
@@ -136,6 +136,7 @@ export default class Wire
 
   static Sphere( _r = 50, _s = 32, _color = 0x000000 )
   {
+
     _s = ~~( _s / 4 + 1 ) * 4;
 
     let PI = Math.PI;

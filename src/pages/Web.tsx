@@ -15,6 +15,14 @@ function Web() {
       <p>Sample Code</p>
       <pre><code>npm create vite@latest</code></pre>
 
+      <p>コアクラスは全てJSで記述。プロジェクトごとの固有要素についてはTSを推奨。という基準で今後展開。</p>
+      <ul>
+        <li>libs core: JS</li>
+        <li>libs hoge: TS or JS</li>
+        <li>pages: TSX</li>
+        <li>components: TSX</li>
+      </ul>
+
     </>
   )
 }

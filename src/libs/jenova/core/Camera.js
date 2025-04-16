@@ -36,7 +36,6 @@ export default class Camera extends THREE.PerspectiveCamera
         this.focalLengthToFOV( 35 )
 	}
 
-
 	focalLengthToFOV( _focalLength = 35 )
 	{
 		var _h = this.filmGauge; //  (36mm * 24mm (フルサイズ) の対角線の長さを算出)

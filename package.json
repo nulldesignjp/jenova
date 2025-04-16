@@ -19,6 +19,7 @@
     "glsl-curl-noise": "^0.0.4",
     "glsl-noise": "^0.0.0",
     "glsl-random": "^0.0.5",
+    "gsap": "^3.12.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.5.0",

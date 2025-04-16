@@ -5,42 +5,93 @@ import { useLocation } from "react-router-dom";
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 
-import PseudoWebGL from '../libs/PseudoWebGL'
-import Reunion from '../libs/jenova/Reunion'
+import Jenova from '../libs/jenova'
+import gsap from 'gsap'
+import Wire from '../libs/jenova/core/Wire.js'
+// import PlaneImage from './libs/jenova/PlaneImage.js'
 
 function App() {
 
   const [count, setCount] = useState<number>(0);
   const myCanvas = useRef<HTMLCanvasElement>(null);
   const myCanvas2 = useRef<HTMLCanvasElement>(null);
-  const pseudoWebGL = useRef<PseudoWebGL | null>(null);
-  const reunion = useRef<Reunion | null>(null);
+  const reunion = useRef<Jenova | null>(null);
+  const updatekey = useRef<number>(null);
 
   const location = useLocation();
+
+
+  const mesh = useRef<Wire | null>(null);
+  const sphere = useRef<Wire | null>(null);
+
 
   useEffect(()=>{
 
     // console.log( myCanvas.current )
 
-    if( myCanvas.current )
-      {
-        pseudoWebGL.current = new PseudoWebGL({
-          canvas: myCanvas.current
-        });
-      }
       if( myCanvas2.current )
       {
-        reunion.current = new Reunion({
+        reunion.current = new Jenova({
           canvas: myCanvas2.current
         });
+
+
+        //  確認用のメッシュを追加
+        mesh.current = Wire.Box( 100, 0x666666 );
+        reunion.current.add( mesh.current );
+
+        //  これだと一緒
+        //  https://gsap.com/docs/v3/Eases
+        mesh.current.position.y = -50
+        let _hoges = ()=>{
+            gsap.to( mesh.current.position,
+                {
+                    x: 0,
+                    y: 50,
+                    z: 0,
+                    duration: 3.0,
+                    ease: 'expo.inOut',
+                    yoyo: true,
+                    repeat: -1,
+                    onComplete: ()=>{
+                        console.log('onComplete')
+                    }
+                })
+        }
+        _hoges()
+
+        sphere.current = Wire.Sphere( 50, 32, 0xFF0000 );
+        reunion.current.add( sphere.current );
+
+
+        //  中に引っ掛ける
+        reunion.current.time.on('tick', ()=>{
+
+          mesh.current.rotation.x += 0.01;
+          mesh.current.rotation.y += 0.01;
+  
+          sphere.current.rotation.x -= 0.01;
+          sphere.current.rotation.y += 0.01;
+
+        });
+
       }
 
     return ()=>{
       //  dispose
-      pseudoWebGL.current?.dispose();
-      pseudoWebGL.current = null;
+      console.log('dispose')
+
+      reunion.current.remove( mesh.current );
+      reunion.current.remove( sphere.current );
+
       reunion.current?.dispose();
       reunion.current = null;
+
+      if( updatekey.current )
+        {
+          window.cancelAnimationFrame( updatekey.current );
+          updatekey.current = null;
+        }
     }
 
   },[])
@@ -62,7 +113,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Vite + React + TypeScript.</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -75,7 +126,6 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
 
-      <canvas className="indexwebglview" ref={myCanvas}></canvas>
       <canvas className="webglview" ref={myCanvas2}></canvas>
 
       <p>contents area.</p>
