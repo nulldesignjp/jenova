@@ -10,7 +10,6 @@ export default class Jenova
     constructor( props )
     {
 
-        console.log('%cJenova.js','color:#FF9900; font-weight: bold;','color:white;');
         Register(Jenova);
 
         this.props = {
@@ -21,10 +20,9 @@ export default class Jenova
             ...props // 渡されたものは上書き
         }
 
-
         this._init()
 
-        new Pane()  //  testcode
+        // new Pane()  //  testcode
     }
 
     _init()
@@ -35,9 +33,11 @@ export default class Jenova
         this.scroll = new Jenova.Scroll();
         this.wheel = new Jenova.Wheel();
 
-        //  event check
+        //  event check - basic
         this.size.on('resize',()=>{ this.resize();  })
         this.time.on('tick', ()=>{  this.update();  })
+
+        //  option
         this.scroll.on('scroll', ()=>{  console.log("scroll", this.scroll.x, this.scroll.y)  })
         this.wheel.on('wheel', ()=>{  console.log("wheel", this.wheel.value)  })
 
@@ -48,7 +48,7 @@ export default class Jenova
             canvas: this.props.canvas
         });
 
-        //  scenelayout
+        //  scene layout
         this.resize();
         
     }
@@ -56,7 +56,6 @@ export default class Jenova
     loadScene( _sceneLabel )
     {
         console.log( 'loadScene,',_sceneLabel )
-        this.mesh.material.color.set( Math.random() * 0xffffff );
     }
 
     add( _object3d)
@@ -88,9 +87,11 @@ export default class Jenova
         this.camera.dispose();
         this.scene.dispose();
 
+        //  this.page
         this.size.off('resize');
         this.time.off('tick');
         this.scroll.off('scroll');
         this.wheel.off('wheel');
+
     }
 }

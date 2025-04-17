@@ -9,17 +9,8 @@ export default class BasicScene extends Jenova.Scene
     constructor()
     {
         super()
-        this.init()
     }
 
-    init():void{}
-
-    fillIn():void{}
-
-    fillOut():void{}
-
-    update():void{}
-
-    resize():void{}
+    init(){}
 
 }

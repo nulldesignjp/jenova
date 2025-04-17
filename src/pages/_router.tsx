@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { Routes, Route } from "react-router-dom"
-import Index from './index.jsx'
-import Web from './Web.jsx'
-import Ai from './Ai.jsx'
-import Text from './Text.jsx'
-import Page404 from './Page404.jsx'
+import Index from './Index.tsx'
+import Web from './Web.tsx'
+import Ai from './Ai.tsx'
+import Text from './Text.tsx'
+import Page404 from './Page404.tsx'
 
 function App()
 {

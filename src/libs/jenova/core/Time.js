@@ -64,6 +64,7 @@ export default class Time extends EventEmitter
         this.fpsCount ++;
 
         this.trigger('tick');
+        console.log('tick')
 
     }
 
@@ -71,28 +72,33 @@ export default class Time extends EventEmitter
     {
         this.pause();
         this.currentTime = Date.now() * 0.001;
+        this.intervalKey = setInterval(()=>{
+          this.fps = this.fpsCount;
+          this.fpsCount = 0;
+        },1000);
         this.update();
     }
 
     pause()
     {
         window.cancelAnimationFrame( this.updatekey );
+        window.clearInterval( this.intervalKey );
     }
 
     dispose()
     {
-        window.cancelAnimationFrame( this.updatekey );
-        window.clearInterval( this.intervalKey );
+        // window.cancelAnimationFrame( this.updatekey );
+        // window.clearInterval( this.intervalKey );
 
-        let len = this.eventList.length;
-        while( len )
-        {
-        len--
-        let _evt = this.eventList.pop();
+        // let len = this.eventList.length;
+        // while( len )
+        // {
+        // len--
+        // let _evt = this.eventList.pop();
 
-        _evt.target.removeEventListener( _evt.key, _evt.value, _evt.option );
-        _evt = null;
-        }
-        this.eventList = null
+        // _evt.target.removeEventListener( _evt.key, _evt.value, _evt.option );
+        // _evt = null;
+        // }
+        // this.eventList = null
     }
 }

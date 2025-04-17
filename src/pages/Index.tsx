@@ -31,8 +31,6 @@ function App() {
 
   useEffect(()=>{
 
-    // console.log( myCanvas.current )
-
       if( myCanvas.current )
       {
         reunion.current = new Jenova({
@@ -88,7 +86,7 @@ function App() {
 
     return ()=>{
       //  dispose
-      console.log('dispose')
+      console.log('dispose');
 
       img.current.material.map.dispose()
 

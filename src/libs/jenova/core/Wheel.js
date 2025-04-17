@@ -43,7 +43,7 @@ export default class Wheel extends EventEmitter
 
     dispose()
     {
-        this.events.target.removeEventListener( this.events.key, this.events.value );
-        this.events = null;
+        // this.events.target.removeEventListener( this.events.key, this.events.value );
+        // this.events = null;
     }
 }

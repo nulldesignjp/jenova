@@ -9,7 +9,7 @@ export default class PlaneImage
         let _geometry = new THREE.PlaneGeometry( _texture.image.width, _texture.image.height );
         let _material = new THREE.MeshBasicMaterial({
             map: _texture,
-            size: THREE.DoubleSide
+            side: THREE.DoubleSide
 
         });
         // _material.outputEncoding = THREE.sRGBEncoding;

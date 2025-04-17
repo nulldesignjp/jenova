@@ -7,7 +7,8 @@ import Scroll from './Scroll.js'
 import Wheel from './Wheel.js'
 import Wire from './Wire.js'
 
-export default function Register(Jenova) {
+export default function Register(Jenova)
+{
     Jenova.Scene = Scene;
     Jenova.Camera = Camera;
     Jenova.Renderer = Renderer;
@@ -18,5 +19,3 @@ export default function Register(Jenova) {
     Jenova.Wire = Wire;
     Jenova.version = '0.0.1';
 }
-
-
