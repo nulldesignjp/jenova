@@ -6,18 +6,32 @@ export default class Renderer extends THREE.WebGLRenderer
 {
     constructor( props )
     {
-        let _props = props;
-        _props.antialias = _props.antialias || true;
-        _props.preserveDrawingBuffer = _props.preserveDrawingBuffer || true;
-        _props.alpha = _props.alpha || false;
-        _props.background = _props.background || 0xFFFFFF;
+        const _props = 
+        {
+            ...props,
+            powerPreference: 'high-performance',
+            stencil: false,
+            depth: true,
+            antialias: true,
+            preserveDrawingBuffer: true,
+            alpha: false,
+            background: 0xFFFFFF
+        }
 
         super( _props );
 
+         // パフォーマンス設定
         this.outputColorSpace = THREE.SRGBColorSpace;
         this.setSize( Size.width, Size.height )
         this.setPixelRatio( Size.pixelRatio );
         this.setClearColor( _props.background, 1 )
+
+        // シャドウマップの最適化
+        this.shadowMap.enabled = true;
+        this.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        // メモリ使用量の最適化
+        this.info.autoReset = false;
 
         this.resizekey = undefined;
 
@@ -42,6 +56,7 @@ export default class Renderer extends THREE.WebGLRenderer
 
     dispose()
     {
-        this.dispose()
+        super.dispose();  // 親クラスのdisposeを呼び出す
+        this.resizekey = undefined;
     }
 }

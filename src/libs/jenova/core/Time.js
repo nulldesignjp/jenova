@@ -64,7 +64,6 @@ export default class Time extends EventEmitter
         this.fpsCount ++;
 
         this.trigger('tick');
-        console.log('tick')
 
     }
 

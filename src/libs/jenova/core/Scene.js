@@ -5,7 +5,7 @@ export default class Scene extends THREE.Scene
     constructor( props )
     {
         super( props );
-
+        this.objects = new Map(); // オブジェクト管理用
         this.init();
     }
 
@@ -37,5 +37,27 @@ export default class Scene extends THREE.Scene
     /**
      * @description シーンの破棄。外部から呼び出す想定
      */
-    dispose(){}
+    dispose()
+    {
+        // オブジェクトのクリーンアップ
+        this.objects.forEach(object => {
+            if (object.geometry) {
+                object.geometry.dispose();
+            }
+            if (object.material) {
+                if (Array.isArray(object.material)) {
+                    object.material.forEach(material => material.dispose());
+                } else {
+                    object.material.dispose();
+                }
+            }
+            if (object.texture) {
+                object.texture.dispose();
+            }
+        });
+        this.objects.clear();
+        this.clear();
+
+        //  uniforms.texture.value.dispose();をいつか追加
+    }
 }
