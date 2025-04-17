@@ -10,7 +10,7 @@ import Time from './core/Time.js'
 import Pane from './Pane.js'
 import gsap from 'gsap'
 import Wire from './core/Wire.js'
-import PlaneImage from './PlaneImage.js'
+import PlaneImage from './utils/PlaneImage.js'
 
 type Params = {
     canvas: HTMLCanvasElement;

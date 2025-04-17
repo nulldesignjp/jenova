@@ -7,7 +7,7 @@ import viteLogo from '/vite.svg'
 import Jenova from '../libs/jenova'
 import gsap from 'gsap'
 import Wire from '../libs/jenova/core/Wire.js'
-import PlaneImage from '../libs/jenova/PlaneImage.js'
+import PlaneImage from '../libs/jenova/utils/PlaneImage.js'
 import * as THREE from 'three'
 
 function App() {

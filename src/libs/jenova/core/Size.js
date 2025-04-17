@@ -21,23 +21,23 @@ export default class Size extends EventEmitter
             this.width = document.documentElement.clientWidth;
             this.height = document.documentElement.clientHeight;
             this.pixelRatio = Math.min( window.devicePixelRatio, 2 );
-            this.resize()
 
-            // Resize event
+
+            // Resize even
             this.events = {
                 target: window,
                 key: 'resize',
-                value: ()=>{    this.resize();  }
+                value: ()=>{    this.update();  }
             }
 
             this.events.target.addEventListener( this.events.key, this.events.value );
 
-        this.resize();
+        this.update();
         Size.instance = this;
 
     }
 
-    resize()
+    update()
     {
         Size.width = document.documentElement.clientWidth;
         Size.height = document.documentElement.clientHeight;
