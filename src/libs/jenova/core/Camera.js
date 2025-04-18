@@ -19,16 +19,16 @@ export default class Camera extends THREE.PerspectiveCamera
         this.lookAt( this.focus )
     }
 
-	resize()
+	resize( _width, _height, _pixelRatio )
 	{
 		if( this.aspect )
 		{
-			this.aspect = Size.width / Size.height;
+			this.aspect = _width / _height;
 		} else {
-			this.left = - Size.width * 0.5;
-			this.right = Size.width * 0.5;
-			this.bottom = - Size.height * 0.5;
-			this.top = Size.height * 0.5;
+			this.left = - _width * 0.5;
+			this.right = _width * 0.5;
+			this.bottom = - _height * 0.5;
+			this.top = _height * 0.5;
 		}
 		this.updateProjectionMatrix();
 
@@ -36,6 +36,11 @@ export default class Camera extends THREE.PerspectiveCamera
         this.focalLengthToFOV( 35 )
 	}
 
+	/**
+	 * 
+	 * @param {number} _focalLength レンズの焦点距離(mm)
+	 * @returns {number} 計算された画角（FOV, 単位は度）
+	 */
 	focalLengthToFOV( _focalLength = 35 )
 	{
 		var _h = this.filmGauge; //  (36mm * 24mm (フルサイズ) の対角線の長さを算出)
@@ -46,12 +51,31 @@ export default class Camera extends THREE.PerspectiveCamera
 		return this.fov;
 	}
 
+	/**
+	 * ウィンドウの高さとカメラの画角から、
+	 * ピクセル等倍（1px = 1単位）になるカメラ距離を計算する。
+	 * 
+	 * この関数は主にTHREE.jsのPerspectiveCameraに対して使用し、
+	 * ウィンドウ上でピクセルと3D空間のスケールを一致させたい場合に利用する。
+	 * 
+	 * @returns {number} ピクセル等倍になるカメラの距離
+	 */
 	pixelEqualMagnification()
 	{
 		var _dist = ( ( window.innerHeight ) * 0.5 ) / Math.tan( ( this.fov * 0.5 ) * Math.PI / 180 );
 		return _dist;
 	}
 
+	/**
+	 * Meshのワールド座標をスクリーン上の2D座標に変換する。
+	 * 
+	 * THREE.jsのカメラとコンテキスト情報を使い、
+	 * 3Dオブジェクトのスクリーン上での位置（ピクセル座標）を取得する。
+	 * カメラの背後にあるオブジェクトは画面外扱いとして (-9999, -9999) を返す。
+	 * 
+	 * @param {THREE.Mesh} _mesh スクリーン座標に変換する対象のメッシュ
+	 * @returns {{x: number, y: number}} スクリーン上の2D座標（ピクセル単位）
+	 */
 	getWorldToScreen2D( _mesh )
 	{
 		var vector = new THREE.Vector3();

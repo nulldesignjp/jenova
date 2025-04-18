@@ -42,15 +42,15 @@ export default class Renderer extends THREE.WebGLRenderer
         this.render( _scene, _camera )
     }
 
-    resize()
+    resize( _width, _height, _pixelRatio )
     {
         clearTimeout( this.resizekey );
-        this.setSize( Size.width, Size.height )
+        this.setSize( _width, _height )
         this.setPixelRatio( 1 );
 
         this.resizekey = setTimeout(()=>{
-            this.setSize( Size.width, Size.height )
-            this.setPixelRatio( Size.pixelRatio );
+            this.setSize( _width, _height )
+            this.setPixelRatio( _pixelRatio );
         },33)
     }
 

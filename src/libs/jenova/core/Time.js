@@ -86,18 +86,18 @@ export default class Time extends EventEmitter
 
     dispose()
     {
-        // window.cancelAnimationFrame( this.updatekey );
-        // window.clearInterval( this.intervalKey );
+        window.cancelAnimationFrame( this.updatekey );
+        window.clearInterval( this.intervalKey );
 
-        // let len = this.eventList.length;
-        // while( len )
-        // {
-        // len--
-        // let _evt = this.eventList.pop();
+        let len = this.eventList.length;
+        while( len )
+        {
+        len--
+        let _evt = this.eventList.pop();
 
-        // _evt.target.removeEventListener( _evt.key, _evt.value, _evt.option );
-        // _evt = null;
-        // }
-        // this.eventList = null
+        _evt.target.removeEventListener( _evt.key, _evt.value, _evt.option );
+        _evt = null;
+        }
+        this.eventList = null
     }
 }

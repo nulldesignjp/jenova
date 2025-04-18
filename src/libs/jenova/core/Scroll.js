@@ -2,43 +2,26 @@ import EventEmitter from './EventEmitter.js'
 
 export default class Scroll extends EventEmitter
 {
-    static instance;
-
-    static x;
-    static y;
     
     constructor()
     {
-        super()
+        super();
 
-        if( Scroll.instance != undefined )
-        {
-            return Scroll.instance;
+        this.x = window.scrollX;
+        this.y = window.scrollY;
+
+        this.events = {
+            target: window,
+            key: 'scroll',
+            value: ()=>{    this.scroll();  }
         }
 
-            // Setup
-            Scroll.x = window.scrollX;
-            Scroll.y = window.scrollY;
-            this.x = window.scrollX;
-            this.y = window.scrollY;
-
-            // Resize event
-            this.events = {
-                target: window,
-                key: 'scroll',
-                value: ()=>{    this.scroll();  }
-            }
-
-            this.events.target.addEventListener( this.events.key, this.events.value );
-
-            Scroll.instance = this;
+        this.events.target.addEventListener( this.events.key, this.events.value );
 
     }
 
     scroll()
     {
-        Scroll.x = window.scrollX;
-        Scroll.y = window.scrollY;
         this.x = window.scrollX;
         this.y = window.scrollY;
         this.trigger('scroll');
@@ -46,7 +29,7 @@ export default class Scroll extends EventEmitter
 
     dispose()
     {
-        // this.events.target.removeEventListener( this.events.key, this.events.value );
-        // this.events = null;
+        this.events.target.removeEventListener( this.events.key, this.events.value );
+        this.events = null;
     }
 }

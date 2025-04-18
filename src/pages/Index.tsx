@@ -29,6 +29,8 @@ function App() {
   const mesh = useRef<Wire | null>(null);
   const sphere = useRef<Wire | null>(null);
 
+  const weight = useRef<HTMLDivElement | null>(null)
+
   useEffect(()=>{
 
       if( myCanvas.current )
@@ -85,7 +87,6 @@ function App() {
 
         //  ???        
         var _url = 'https://script.google.com/macros/s/AKfycbxQJPSyzcmvXt1CMniXtjJVW0zb1JI_YEbZEMZ5LqHs0IiNFZazJR5e6xYIhGi8xkOk4A/exec'
-
         const xhr = new XMLHttpRequest();
         xhr.open( 'GET', _url );
         xhr.send();
@@ -93,7 +94,36 @@ function App() {
         xhr.onload = () => {
           if (xhr.readyState == 4 && xhr.status == 200) {
             const data = xhr.response;
-            console.log(data);
+
+            let _ul = document.createElement('ul')
+            weight.current.appendChild( _ul )
+
+            for( var i = 0; i < data.length; i+=7 )
+            {
+              let _li = document.createElement('li');
+              let _date = document.createElement('span');
+              let _weight = document.createElement('span');
+              let _fat = document.createElement('span');
+              _li.appendChild( _date );
+              _li.appendChild( _weight );
+              _li.appendChild( _fat );
+
+              _date.style.marginRight = '20px'
+              _weight.style.marginRight = '20px'
+
+              _date.style.fontSize = '2em'
+              _weight.style.fontSize = '2em'
+              _fat.style.fontSize = '2em'
+
+              let _d = new Date( data[i].Date )
+              _date.textContent = _d.getFullYear() + '/' + ( _d.getMonth() + 1 ) + '/' + _d.getDate()
+              _weight.textContent = data[i].Weight + 'kg';
+              _fat.textContent = data[i].Fat + '%';
+
+              _ul.appendChild(_li)
+            }
+
+
           } else {
             console.log(`Error: ${xhr.status}`);
           }
@@ -197,6 +227,8 @@ React.memo()	動かさなくていいUIの最適化	描画コスト減（特にT
 
       <p>画像</p>
       <img src="/assets/img/img_00000.jpg" alt="sample image" />
+
+      <div ref={weight}></div>
     </>
   )
 }

@@ -14,6 +14,17 @@ export default class Scene extends THREE.Scene
      */
     init(){}
 
+
+    // add( _object3d)
+    // {
+    //     this.super.add( _object3d );
+    // }
+
+    // remove( _object3d )
+    // {
+    //     return _object3d.removeFromParent();
+    // }
+
     /**
      * @description シーン開始時の演出
      */

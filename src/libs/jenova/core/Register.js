@@ -1,4 +1,5 @@
 import Scene from './Scene.js'
+import SceneManager from './SceneManager.js'
 import Camera from './Camera.js'
 import Renderer from './Renderer.js'
 import Size from './Size.js'
@@ -10,6 +11,7 @@ import Wire from './Wire.js'
 export default function Register(Jenova)
 {
     Jenova.Scene = Scene;
+    Jenova.SceneManager = SceneManager;
     Jenova.Camera = Camera;
     Jenova.Renderer = Renderer;
     Jenova.Size = Size;

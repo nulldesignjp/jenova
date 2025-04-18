@@ -38,8 +38,8 @@ export default class Jenova
         this.time.on('tick', ()=>{  this.update();  })
 
         //  option
-        this.scroll.on('scroll', ()=>{  console.log("scroll", this.scroll.x, this.scroll.y)  })
-        this.wheel.on('wheel', ()=>{  console.log("wheel", this.wheel.value)  })
+        // this.scroll.on('scroll', ()=>{  console.log("scroll", this.scroll.x, this.scroll.y)  })
+        // this.wheel.on('wheel', ()=>{  console.log("wheel", this.wheel.value)  })
 
         //  init
         this.scene = new Jenova.Scene();
@@ -47,6 +47,10 @@ export default class Jenova
         this.renderer = new Jenova.Renderer({
             canvas: this.props.canvas
         });
+
+        //  management
+        this.sceneManager = new Jenova.SceneManager();
+        this.sceneManager.addScene( 'blank', this.scene );
 
         //  scene layout
         this.resize();
@@ -72,13 +76,12 @@ export default class Jenova
     {
         this.camera.update()
         this.renderer.update( this.scene, this.camera );
-
     }
 
     resize()
     {
-        this.renderer.resize();
-        this.camera.resize();
+        this.renderer.resize( this.size.width, this.size.height, this.size.pixelRatio );
+        this.camera.resize( this.size.width, this.size.height, this.size.pixelRatio );
     }
 
     dispose()
@@ -87,11 +90,15 @@ export default class Jenova
         this.camera.dispose();
         this.scene.dispose();
 
-        //  this.page
         this.size.off('resize');
         this.time.off('tick');
         this.scroll.off('scroll');
         this.wheel.off('wheel');
+
+        this.size.dispose();
+        this.time.dispose();
+        this.scroll.dispose();
+        this.wheel.dispose();
 
     }
 }
