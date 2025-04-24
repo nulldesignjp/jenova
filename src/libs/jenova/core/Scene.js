@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-export default class Scene extends THREE.Scene
+export class Scene extends THREE.Scene
 {
     constructor( props )
     {
@@ -72,3 +72,5 @@ export default class Scene extends THREE.Scene
         //  uniforms.texture.value.dispose();をいつか追加
     }
 }
+
+export default Scene

@@ -1,6 +1,6 @@
 import EventEmitter from './EventEmitter.js'
 
-export default class Scroll extends EventEmitter
+export class Scroll extends EventEmitter
 {
     
     constructor()
@@ -33,3 +33,5 @@ export default class Scroll extends EventEmitter
         this.events = null;
     }
 }
+
+export default Scroll;

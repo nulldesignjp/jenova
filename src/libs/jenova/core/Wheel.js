@@ -1,7 +1,7 @@
 import { pass } from 'three/tsl';
 import EventEmitter from './EventEmitter.js'
 
-export default class Wheel extends EventEmitter
+export class Wheel extends EventEmitter
 {
     
     constructor()
@@ -33,3 +33,5 @@ export default class Wheel extends EventEmitter
         this.events = null;
     }
 }
+
+export default Wheel

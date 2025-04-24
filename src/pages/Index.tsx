@@ -66,14 +66,6 @@ function App() {
 
   },[])
 
-
-  useEffect(()=>{
-
-    console.log( location.pathname );
-
-  },[location.pathname]);
-
-
   return (
     <>
       <div>

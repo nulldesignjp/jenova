@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default class Wire
+export class Wire
 {
 
   static Triangle( _r = 50, _color = 0x000000 )
@@ -246,3 +246,5 @@ export default class Wire
 
   }
 }
+
+export default Wire;

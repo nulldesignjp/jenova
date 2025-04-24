@@ -9,8 +9,8 @@ import { useLocation } from "react-router-dom";
 //  Jenova
 import gsap from 'gsap'
 import * as THREE from 'three'
+import * as Jenova from '../libs/jenova'
 import { getOrCreateApp } from '../libs/jenova/core/runtime';
-import Jenova from '../libs/jenova'
 import Wire from '../libs/jenova/core/Wire.js'
 import PlaneImage from '../libs/jenova/utils/PlaneImage.js'
 
@@ -39,7 +39,7 @@ const ArtWorks = ()=> {
       //   canvas: myCanvas.current
       // });
       reunion.current = getOrCreateApp(
-        () => new Jenova({
+        () => new Jenova.App({
           canvas: myCanvas.current
         })
       );

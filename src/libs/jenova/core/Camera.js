@@ -2,7 +2,7 @@ import * as THREE from 'three'
 
 import Size from './Size.js'
 
-export default class Camera extends THREE.PerspectiveCamera
+export class Camera extends THREE.PerspectiveCamera
 {
     constructor( props )
     {
@@ -104,3 +104,5 @@ export default class Camera extends THREE.PerspectiveCamera
 
     dispose(){}
 }
+
+export default Camera;

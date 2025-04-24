@@ -1,6 +1,6 @@
 import EventEmitter from './EventEmitter.js'
 
-export default class Time extends EventEmitter
+export class Time extends EventEmitter
 {
     constructor()
     {
@@ -101,3 +101,5 @@ export default class Time extends EventEmitter
         this.eventList = null
     }
 }
+
+export default Time

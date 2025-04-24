@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-export default class SceneManager
+export class SceneManager
 {
 
     constructor()
@@ -38,3 +38,5 @@ export default class SceneManager
     dispose(){}
 
 }
+
+export default SceneManager;

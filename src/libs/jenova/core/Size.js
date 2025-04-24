@@ -1,6 +1,6 @@
 import EventEmitter from './EventEmitter.js'
 
-export default class Size extends EventEmitter
+export class Size extends EventEmitter
 {
     
     constructor()
@@ -37,3 +37,5 @@ export default class Size extends EventEmitter
         this.events = null;
     }
 }
+
+export default Size

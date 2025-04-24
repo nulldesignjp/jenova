@@ -2,7 +2,7 @@ import * as THREE from 'three'
 
 import Size from './Size.js'
 
-export default class Renderer extends THREE.WebGLRenderer
+export class Renderer extends THREE.WebGLRenderer
 {
     constructor( props )
     {
@@ -60,3 +60,5 @@ export default class Renderer extends THREE.WebGLRenderer
         this.resizekey = undefined;
     }
 }
+
+export default Renderer;

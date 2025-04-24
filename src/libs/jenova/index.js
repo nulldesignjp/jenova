@@ -1,104 +1,11 @@
-import * as THREE from 'three'
-import Register from './core/Register.js'
 
-//  testcode
-import Pane from './Pane.js'
+export { Scene } from './core/Scene.js'
+export { Camera } from './core/Camera.js'
+export { Renderer } from './core/Renderer.js'
+export { SceneManager } from './core/SceneManager.js'
+export { Time } from './core/Time.js'
+export { Size } from './core/Size.js'
+export { Scroll } from './core/Scroll.js'
+export { Wheel } from './core/Wheel.js'
 
-export default class Jenova
-{
-
-    constructor( props )
-    {
-
-        Register(Jenova);
-
-        this.props = {
-            backgroundColor: 0x000000, // 初期値黒
-            preserveDrawingBuffer: true,
-            antialias: true,
-            alpha: false,
-            ...props // 渡されたものは上書き
-        }
-
-        this._init()
-
-        // new Pane()  //  testcode
-    }
-
-    _init()
-    {
-        //  initevent
-        this.time = new Jenova.Time()
-        this.size = new Jenova.Size();
-        this.scroll = new Jenova.Scroll();
-        this.wheel = new Jenova.Wheel();
-
-        //  event check - basic
-        this.size.on('resize',()=>{ this.resize();  })
-        this.time.on('tick', ()=>{  this.update();  })
-
-        //  option
-        // this.scroll.on('scroll', ()=>{  console.log("scroll", this.scroll.x, this.scroll.y)  })
-        // this.wheel.on('wheel', ()=>{  console.log("wheel", this.wheel.value)  })
-
-        //  init
-        this.scene = new Jenova.Scene();
-        this.camera = new Jenova.Camera();
-        this.renderer = new Jenova.Renderer({
-            canvas: this.props.canvas
-        });
-
-        //  management
-        this.sceneManager = new Jenova.SceneManager();
-        this.sceneManager.addScene( 'blank', this.scene );
-
-        //  scene layout
-        this.resize();
-        
-    }
-
-    loadScene( _sceneLabel )
-    {
-        console.log( 'loadScene,',_sceneLabel )
-    }
-
-    add( _object3d)
-    {
-        this.scene.add( _object3d );
-    }
-
-    remove( _object3d )
-    {
-        return _object3d.removeFromParent();
-    }
-
-    update()
-    {
-        this.camera.update()
-        this.renderer.update( this.scene, this.camera );
-    }
-
-    resize()
-    {
-        this.renderer.resize( this.size.width, this.size.height, this.size.pixelRatio );
-        this.camera.resize( this.size.width, this.size.height, this.size.pixelRatio );
-    }
-
-    dispose()
-    {
-        this.renderer.dispose();
-        this.camera.dispose();
-        this.scene.dispose();
-
-        this.size.off('resize');
-        this.time.off('tick');
-        this.scroll.off('scroll');
-        this.wheel.off('wheel');
-
-        this.size.dispose();
-        this.time.dispose();
-        this.scroll.dispose();
-        this.wheel.dispose();
-
-    }
-}
+export { App } from './App.js'
